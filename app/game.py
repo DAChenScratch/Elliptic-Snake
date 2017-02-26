@@ -6,13 +6,13 @@ class Game():
         self.height = height
         self.id = game_id
         
-        self.board = np.zeros((2,height,width))
+        self.board = np.zeros((2,height,width), dtype=int)
         self.snakes = []
         self.food = []
         
     def parse_board_data(self, data):
         self.snakes = []
-        self.board = np.zeros((2,self.height,self.width))
+        self.board = np.zeros((2,self.height,self.width), dtype=int)
         for snake in data["snakes"]:
             if snake["id"] == data["you"]:
                 self.snakes.insert(0,snake)
