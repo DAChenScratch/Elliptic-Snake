@@ -5,7 +5,7 @@ class Game():
     def __init__(self, height, width, game_id):
         self.width = width
         self.height = height
-        self.game_id = game_id
+        self.id = game_id
         
         self.board = np.zeros((2,height,width))
         self.snakes = []
