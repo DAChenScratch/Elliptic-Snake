@@ -1,73 +1,40 @@
 import numpy as np
+import networkx as nx
 
-def find_safe_move(x,y, board, snakes):
-	#board states given in system [z,y,x] 
-	directions = ['up', 'down', 'left', 'right']
-	
-	#3 is the check right
-	#2 is the check left
-	#1 is the check down
-	#0 is the check up
-	for i in range(3,-1,-1):
-		safe = False
-		if(i == 3):
-			#stay in the game board!
-			if(x+1 >= board.shape[1]):
-				del directions[i]
-				continue
-				
-			#check if otherwise safe
-			safe = check_square(x+1,y,board)
-			
-		if(i == 2):
-			#stay in the game board!
-			if(x-1 < 0):
-				del directions[i]
-				continue
-				
-			#check if otherwise safe
-			safe = check_square(x-1,y,board)
-			
-		if(i == 1):
-			#stay in the game board!
-			if(y+1 >= board.shape[0]):
-				del directions[i]
-				continue
-				
-			#check if otherwise safe
-			safe = check_square(x,y+1,board)
-		if(i == 0):
-		
-			#stay in the game board
-			if(y-1 < 0):
-				del directions[i]
-				continue
-				
-			#check if otherwise safe
-			safe = check_square(x,y-1,board)
-			
-		if not safe:
-			del directions[i]
 
-	return directions
+def next_move(board, head, target):
+	G = nx.Graph()
+	for i in range((len(board)*len(board[0]))):
+		G.add_node(i)
 	
-	
-#checks the given square for safety. 			
-def check_square(x,y,board):
-	#check if empty or food
-	if(board[0,y,x] == (0 or 4)):
-		return True
+	for i in range((len(board)*len(board[0]))):
+		#1 is try right
+		#2 is try left
+		#3 is try up
+		#4 is try down
+		for j in range(1,5):
+			if j == 1:
+				#stay on the board
+				if(i+j)%len(board[0]) == 0:
+					continue
+				if (board[int()((i+j)/board[0])]][(i+j)%board[0]]) == 0:
+					G.add_edge(i,j)
+			if j == 2:
+				if i%len(board[0]) == 0:
+					continue
+				if (board[int()((i-1)/board[0])]][(i-1)%board[0]]) == 0:
+					G.add_edge(i,j)
+			if j == 3:
+				if i< len(board[0]):
+					continue
+				if (board[int()((i-len(board[0])/board[0])]][(i-len(board[0])%board[0]]) == 0:
+					G.add_edge(i,j)
+			if j == 4:
+				if i/len(board[0]) == len(board)-1:
+					continue
+				if (board[int()((i+len(board[0])/board[0])]][(i+len(board[0])%board[0]]) == 0:
+					G.add_edge(i,j)
+		#done making graph G. now find a path and hope this works...
 		
-	#check if body or tail (will still be unsafe after next move.
-	if(board[0,y,x] == (2 or 1)):
-		return False
-		
-	#if it is a tail it might become safe next turn. check!
-	if(board[0,y,x] == 3):
-		#check if that tails head is by food or if it is your own tail.(safe in both cases) 
-		x=1
-	return True
-	
-	
-	
-	
+		path = nx.shortest_path(G,source=((head[0]*len(board[0]))+(head[1]*len(board))),target=((target[0]*len(board[0]))+(target[1]*len(board)))
+		return path
