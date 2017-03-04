@@ -91,7 +91,7 @@ data = {
 
 def test_parse_data():
     game1 = Game(5,5,"870d6d79-93bf-4941-8d9e-944bee131167")
-    game1.parse_board_data(data)
+    game1.parse_data(data)
     assert game1.food == [[3,3],[0,4]]
     assert game1.snakes[1]["coords"][0] == [2,1]
     assert game1.snakes == [{"taunt": "git gud","name": "my-snake","id": "25229082-f0d7-4315-8c52-6b0ff23fb1fb",
