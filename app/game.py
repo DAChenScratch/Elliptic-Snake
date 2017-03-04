@@ -34,7 +34,7 @@ class Game():
             if len(path) < min_path:
                 best_path = path
         return best_path[0]"""
-        return "right"
+        return "down"
     
     def priority_foods(self):
         targets = [] #if empty is returned then no food is available

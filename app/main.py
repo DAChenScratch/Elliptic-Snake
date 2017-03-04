@@ -1,7 +1,7 @@
 import bottle
 import os
 import random
-#from game import Game
+from app.game import Game
 
 
 @bottle.route('/static/<path:path>')
@@ -34,15 +34,15 @@ def start():
 @bottle.post('/move')
 def move():
     data = bottle.request.json
-    #game1 = Game(data['height'],data['width'],data['game_id'])
-    #game1.parse_data(data)
-    #move = game1.move()
+    game1 = Game(data['height'],data['width'],data['game_id'])
+    game1.parse_data(data)
+    move = game1.move()
 
     # TODO: Do things with data
     directions = ['up', 'down', 'left', 'right']
 
     return {
-        'move': "right",
+        'move': move,
         'taunt': 'Solve this elliptic integral!'
     }
 
