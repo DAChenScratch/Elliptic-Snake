@@ -1,6 +1,7 @@
 import bottle
 import os
 import random
+from game import Game
 
 
 @bottle.route('/static/<path:path>')
@@ -23,23 +24,26 @@ def start():
     # TODO: Do things with data
 
     return {
-        'color': '#00FF00',
+        'color': '#FF0AD2',
         'taunt': '{} ({}x{})'.format(game_id, board_width, board_height),
         'head_url': head_url,
-        'name': 'battlesnake-python'
+        'name': 'Elliptic Snake'
     }
 
 
 @bottle.post('/move')
 def move():
     data = bottle.request.json
+    game1 = Game(data['height'],data['width'],data['game_id'])
+    game1.parse_data(data)
+    move = game1.move()
 
     # TODO: Do things with data
     directions = ['up', 'down', 'left', 'right']
 
     return {
-        'move': random.choice(directions),
-        'taunt': 'battlesnake-python!'
+        'move': move,
+        'taunt': 'Solve this elliptic integral!'
     }
 
 

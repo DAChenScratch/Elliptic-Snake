@@ -11,7 +11,7 @@ class Game():
         self.snakes = []
         self.food = []
         
-    def parse_board_data(self, data):
+    def parse_data(self, data):
         self.snakes = []
         self.board = np.zeros((self.height,self.width), dtype=int)
         for snake in data["snakes"]:
