@@ -48,7 +48,7 @@ class Game():
         targets = [] #if empty is returned then no food is available
         for food in self.food:
             min_snake = min([Game.dist(snake["coords"][0],food) for snake in self.snakes[1:]])
-            our_dist = Game.dist(self.snakes[0]["coords[0]"],food)
+            our_dist = Game.dist(self.snake["coords"][0],food)
             if our_dist <= min_snake:
                 targets.insert(0,food)
         return targets
