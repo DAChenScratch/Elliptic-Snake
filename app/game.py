@@ -31,7 +31,7 @@ class Game():
         best_move = ''
         for target in targets:
             #try:
-            move, length = next_move(self.board, self.snake["coords"][0], target)
+            move, length = next_move(self.board, self.snakes[0]["coords"][0], target)
             #except:
             #    continue
             if length < min_path:
@@ -39,7 +39,7 @@ class Game():
                 best_move = move
         if best_move == '':
             try:
-                move, length = next_move(self.board, self.snake["coords"][0], self.snake["coords"][-1])
+                move, length = next_move(self.board, self.snakes[0]["coords"][0], self.snakes[0]["coords"][-1])
             except:
                 return "right"
         return best_move
