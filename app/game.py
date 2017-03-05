@@ -1,4 +1,5 @@
 import numpy as np
+from app.next_move import next_move
 
 class Game():
     def __init__(self, height, width, game_id):
@@ -25,16 +26,23 @@ class Game():
         self.food = data["food"]
         
     def move(self):
-        """targets = self.priority_foods()
-        board = self.parse_board(self.board)
+        targets = self.priority_foods()
         min_path = float('inf')
-        best_path = []
+        best_move = ''
         for target in targets:
-            #path = somewhere.find_path(board, self.snake["coords"][0], target)
-            if len(path) < min_path:
-                best_path = path
-        return best_path[0]"""
-        return "down"
+            try:
+                move, length = next_move(board, self.snake["coords"][0], target)
+            except:
+                continue
+            if length < min_path:
+                min_path = length
+                best_move = move
+        if best_move == '':
+            try:
+                move, length = next_move(board, self.snake["coords"][0], self.snake["coords"][-1])
+            except:
+                return "right"
+        return best_move
     
     def priority_foods(self):
         targets = [] #if empty is returned then no food is available

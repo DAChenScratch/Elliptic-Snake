@@ -1,6 +1,5 @@
 import numpy as np
 import networkx as nx
-import matplotlib.pyplot as plotter
 
 #returns first move and the length
 def next_move(board, head, target):
