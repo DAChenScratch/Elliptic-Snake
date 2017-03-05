@@ -30,10 +30,10 @@ class Game():
         min_path = float('inf')
         best_move = ''
         for target in targets:
-            try:
-                move, length = next_move(board, self.snake["coords"][0], target)
-            except:
-                continue
+            #try:
+            move, length = next_move(board, self.snake["coords"][0], target)
+            #except:
+            #    continue
             if length < min_path:
                 min_path = length
                 best_move = move
