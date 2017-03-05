@@ -41,6 +41,7 @@ class Game():
         if best_move == '':
             try:
                 move, length = next_move(self.board, self.snakes[0]["coords"][0], self.food[0])
+                return move
             except:
                 x,y = self.snakes[0]["coords"][0]
                 if x+1 < self.width and self.board[y,x+1] == 0:
