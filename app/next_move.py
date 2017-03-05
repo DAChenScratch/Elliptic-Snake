@@ -40,7 +40,18 @@ def next_move(board, head, target):
 	
 	
 	path = nx.shortest_path(G,source=(head[1]*width+head[0]),target=(target[1]*width+target[0]))
-	print(path)
+	data = ["",1]
+	if(path[1]-path[0] == width):
+		data[0] = "down"
+	elif(path[1]-path[0] == -width):
+		data[0] = "up"
+	elif(path[1]-path[0] == 1):
+		data[0] = "right"
+	elif(path[1]-path[0] == -1):
+		data[0] = "left"
+	data[1] = len(path)
+	
+	return data
 	
 def lin_x(x,width):
 	x= x%width
