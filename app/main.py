@@ -2,6 +2,7 @@ import bottle
 import os
 import random
 from app.game import Game
+from app.taunts import taunts
 
 
 @bottle.route('/static/<path:path>')
@@ -42,10 +43,12 @@ def move():
 
     # TODO: Do things with data
     directions = ['up', 'down', 'left', 'right']
+    
+    taunt = taunts(game1.snakes[0]["health_points"])
 
     return {
         'move': move,
-        'taunt': 'Solve this elliptic integral!'
+        'taunt': taunt
     }
 
 

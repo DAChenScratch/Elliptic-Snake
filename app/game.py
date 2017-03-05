@@ -40,16 +40,17 @@ class Game():
                 best_move = move
         if best_move == '':
             try:
-                x,y = self.snakes[0]["coords"][-1][0], self.snakes[0]["coords"][-1][1]
-                for a,b in [(1,0),(-1,0),(0,1),(0,-1)]:
-                    x,y = x+a,y+b
-                    if x >= 0 and x < self.width and y >= 0 and y < self.height:
-                        if self.board[y,x] == 0 and self.snakes[0]["coords"][0] != [x,y]:
-                            move, length = next_move(self.board, self.snakes[0]["coords"][0], self.snakes[0]["coords"][-1])
-                            if length < min_path:
-                                best_move = move
+                move, length = next_move(self.board, self.snakes[0]["coords"][0], self.food[0])
             except:
-                return "right"
+                x,y = self.snakes[0]["coords"][0]
+                if x+1 < self.width and self.board[y,x+1] == 0:
+                    return "right"
+                elif x-1 >= 0 and self.board[y,x-1] == 0:
+                    return "left"
+                elif y+1 < self.height and self.board[y+1,x] == 0:
+                    return "dowm"
+                else:
+                    return "up"
         return best_move
     
     def priority_foods(self):
