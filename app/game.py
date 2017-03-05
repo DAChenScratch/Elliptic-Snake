@@ -47,8 +47,8 @@ class Game():
     def priority_foods(self):
         targets = [] #if empty is returned then no food is available
         for food in self.food:
-            min_snake = min([dist(snake["coords"][0],food) for snake in self.snakes[1:]])
-            our_dist = dist(self.snakes[0]["coords[0]"],food)
+            min_snake = min([Game.dist(snake["coords"][0],food) for snake in self.snakes[1:]])
+            our_dist = Game.dist(self.snakes[0]["coords[0]"],food)
             if our_dist <= min_snake:
                 targets.insert(0,food)
         return targets
