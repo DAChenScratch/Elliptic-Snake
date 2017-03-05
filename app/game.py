@@ -40,7 +40,14 @@ class Game():
                 best_move = move
         if best_move == '':
             try:
-                move, length = next_move(self.board, self.snakes[0]["coords"][0], self.snakes[0]["coords"][-1])
+                x,y = self.snakes[0]["coords"][-1][0], self.snakes[0]["coords"][-1][1]
+                for a,b in [(1,0),(-1,0),(0,1),(0,-1)]:
+                    x,y = x+a,y+b
+                    if x >= 0 and x < self.width and y >= 0 and y < self.height:
+                        if self.board[y,x] == 0 and self.snakes[0]["coords"][0] != [x,y]:
+                            move, length = next_move(self.board, self.snakes[0]["coords"][0], self.snakes[0]["coords"][-1])
+                            if length < min_path:
+                                best_move = move
             except:
                 return "right"
         return best_move
