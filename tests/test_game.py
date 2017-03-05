@@ -98,7 +98,7 @@ def test_parse_data():
         "health_points": 93,"coords": [[0,0],[0,0],[0,0]]},
         {"taunt": "gotta go fast","name": "other-snake","id": "0fd33b05-37dd-419e-b44f-af9936a0a00c","health_points": 50,
          "coords": [[2,1],[2,2],[2,3]]}]
-    expected_board = np.array([[ 1,  0,  1,  0,  0,],
+    expected_board = np.array([[ 0,  0,  1,  0,  0,],
         [ 0,  1,  1,  1,  0],
         [ 0,  0,  1,  0,  0],
         [ 0,  0,  1,  0,  0],

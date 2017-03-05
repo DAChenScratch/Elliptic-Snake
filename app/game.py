@@ -56,6 +56,8 @@ class Game():
 
         if is_us:
             length = len(self.snakes[0]["coords"])
+            head = self.snakes[0]["coords"][0]
+            board[head[1],head[0]] = 0
             for snake in self.snakes[1:]:
                 head = snake["coords"][0]
                 if length <= len(snake["coords"]):

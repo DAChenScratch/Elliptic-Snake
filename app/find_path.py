@@ -8,7 +8,8 @@ def find_path(board, head, target):
         G.add_node(i)
     for x,y in np.ndenumerate(board):
         for a,b in [(1,0),(-1,0),(0,1),(1,0)]:
-            a,b = x+a,y+b
+            a = x+a
+            b = y+b
             if a >= 0 and a < width and b >= 0 and b < height:
                 if board[y,x] == 0 and board[b,a] == 0:
                     G.add_edge(y*width+x,b*width+a)
