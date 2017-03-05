@@ -49,7 +49,7 @@ def lin_y(y,width):
 	y = y//width
 	return y
 if __name__ == "__main__":
-	x = np.array([[0,0,0,0],[1,1,0,0],[0,0,0,0],[0,1,1,0]])
+	x = np.array([[0,0,0,0],[1,1,0,0],[0,0,0,0],[0,1,0,0]])
 	head = [2,3]
 	target = [0,0]
 	next_move(x,head,target)
