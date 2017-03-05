@@ -43,15 +43,23 @@ class Game():
                 move, length = next_move(self.board, self.snakes[0]["coords"][0], self.food[0])
                 return move
             except:
-                x,y = self.snakes[0]["coords"][0]
-                if x+1 < self.width and self.board[y,x+1] == 0:
-                    return "right"
-                elif x-1 >= 0 and self.board[y,x-1] == 0:
-                    return "left"
-                elif y+1 < self.height and self.board[y+1,x] == 0:
-                    return "dowm"
-                else:
-                    return "up"
+                pass
+            for x,y in np.ndenumerate(self.board):
+                if self.board[y,x] == 0:
+                    try:
+                        move, length = next_move(self.board, self.snakes[0]["coords"][0], [x,y])
+                        return move
+                    except:
+                        continue
+            x,y = self.snakes[0]["coords"][0]
+            if x+1 < self.width and self.board[y,x+1] == 0:
+                return "right"
+            elif x-1 >= 0 and self.board[y,x-1] == 0:
+                return "left"
+            elif y+1 < self.height and self.board[y+1,x] == 0:
+                return "dowm"
+            else:
+                return "up"
         return best_move
     
     def priority_foods(self):
