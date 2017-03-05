@@ -29,11 +29,12 @@ class Game():
         targets = self.priority_foods()
         min_path = float('inf')
         best_move = ''
+        move, length = '', 0
         for target in targets:
-            #try:
-            move, length = next_move(self.board, self.snakes[0]["coords"][0], target)
-            #except:
-            #    continue
+            try:
+                move, length = next_move(self.board, self.snakes[0]["coords"][0], target)
+            except:
+                continue
             if length < min_path:
                 min_path = length
                 best_move = move
